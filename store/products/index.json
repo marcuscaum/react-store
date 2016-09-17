@@ -1,0 +1,24 @@
+{
+  "products": [
+    {
+        "id": 1,
+        "name": "Óculos Rayban",
+        "description": "Óculos estilo motoqueiro porra!",
+        "options":{
+          "color": ["green", "orange", "blue"],
+          "size": []
+        },
+        "images":["../images/products/1/rayban.jpg", "../images/products/1/rayban2.jpg", "../images/products/1/rayban3.jpg"],
+    },
+    {
+        "id": 2,
+        "name": "Camisa Heisenberg",
+        "description": "Agora você pode dizer 'Say my name!'",
+        "options":{
+          "color": ["black", "white", "gray"],
+          "size": ["P", "M", "G", "GG", "XXL"]
+        },
+        "images":["../images/products/2/heisenberg.jpg", "../images/products/2/heisenberg2.jpg", "../images/products/2/heisenberg3.jpg"],
+    },
+  ]
+}
