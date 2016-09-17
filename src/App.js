@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Grid, Row, Col, Clearfix, Navbar, Jumbotron, Button } from 'react-bootstrap';
 import logo from './logo.svg';
 import './App.css';
 
