@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Col, Row} from 'react-bootstrap';
-// import './ProductsList.css';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
+import './ProductsList.css';
 
 
 class ProductsList extends Component {
@@ -26,12 +28,28 @@ class ProductsList extends Component {
   }
 
   render() {
+
+    let items  = this.state.products.map(
+      (item, key) => {
+        return (
+          <Col id={`product_${key+1}`} className="products-item" md={3} key={key}>
+            <h1 className="products-item--title">{item.name}</h1>
+            <p className="products-item--descript">{item.description}</p>
+          </Col>
+        )
+      }
+    )
+
+
     return (
       <Col md={9}>
         <Row>
-          {this.state.products.map((item, key) =>
-            <Col id={`product_${key+1}`} className="product-item" md={3}> {item.name} </Col>
-          )}
+          <ReactCSSTransitionGroup
+            transitionName="products-item"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}>
+            {items}
+          </ReactCSSTransitionGroup>
         </Row>
       </Col>
     );

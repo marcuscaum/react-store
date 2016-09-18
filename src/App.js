@@ -6,7 +6,9 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <ProductsList source="http://react-store-api.herokuapp.com/products/all"/>
+      <div className="products">
+        <ProductsList source="http://react-store-api.herokuapp.com/products/all"/>
+      </div>
     );
   }
 }
