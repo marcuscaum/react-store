@@ -6,7 +6,7 @@ class Index extends Component {
   render() {
     return (
       <div className="products">
-        <ProductsList source="http://react-store-api.herokuapp.com/products/all"/>
+        <ProductsList source="https://react-store-api.herokuapp.com/products/all"/>
       </div>
     );
   }
