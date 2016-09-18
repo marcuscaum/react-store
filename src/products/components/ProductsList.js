@@ -4,7 +4,6 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './ProductsList.css';
 
-
 class ProductsList extends Component {
 
   constructor(props) {
