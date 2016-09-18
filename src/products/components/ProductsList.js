@@ -41,16 +41,14 @@ class ProductsList extends Component {
 
 
     return (
-      <Col md={9}>
-        <Row>
-          <ReactCSSTransitionGroup
-            transitionName="products-item"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={300}>
-            {items}
-          </ReactCSSTransitionGroup>
-        </Row>
-      </Col>
+      <Row>
+        <ReactCSSTransitionGroup
+          transitionName="products-item"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+          {items}
+        </ReactCSSTransitionGroup>
+      </Row>
     );
   }
 }

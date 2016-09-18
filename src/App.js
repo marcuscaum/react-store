@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, Row} from 'react-bootstrap';
+import { Grid, Row, Col } from 'react-bootstrap';
 import Header from './components/Header';
 
 import './App.css';
@@ -11,7 +11,12 @@ class App extends Component {
         <Header/>
         <Grid fluid>
           <Row>
-            {this.props.children}
+            <Col md={3}>
+              Xunda shop
+            </Col>
+            <Col md={9}>
+              {this.props.children}
+            </Col>
           </Row>
         </Grid>
       </div>
