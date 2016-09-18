@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ProductsList from '../../../products/components/ProductsList';
+import ProductsList from '../../../components/ProductsList';
 
 describe('<ProductsList />', () => {
 

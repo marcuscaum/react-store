@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import ProductsIndex from '../../../products/pages/Index';
+import ProductsIndex from '../../../products/Index';
 
 describe('<ProductsIndex />', () => {
 
