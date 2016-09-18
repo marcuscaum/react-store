@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory } from 'react-router';
 import App from './App';
-import ProductsIndex from './products/pages/Index';
-import ProductsShow from './products/pages/Show';
-import ProductsNew from './products/pages/New';
+import ProductsIndex from './products/Index';
+import ProductsShow from './products/Show';
+import ProductsNew from './products/New';
 
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
