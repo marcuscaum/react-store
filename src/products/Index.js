@@ -4,10 +4,10 @@ import './Index.css';
 
 class Index extends Component {
   render() {
+    const SOURCE_URL = 'http://localhost:3010/products/all' || 'https://react-store-api.herokuapp.com/products/all'
+
     return (
-      <div className="products">
-        <ProductsList source="https://react-store-api.herokuapp.com/products/all"/>
-      </div>
+      <ProductsList source={SOURCE_URL}/>
     );
   }
 }

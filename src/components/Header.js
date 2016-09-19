@@ -6,7 +6,7 @@ import './Header.css';
 class New extends Component {
   render() {
     return (
-      <Navbar inverse>
+      <Navbar inverse fluid>
         <Navbar.Header>
           <Navbar.Brand>
             <a href="#">React Store</a>
