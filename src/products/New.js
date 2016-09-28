@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Col, FormGroup, FormControl, ControlLabel, InputGroup } from 'react-bootstrap';
+import { Col, FormGroup, FormControl, ControlLabel, InputGroup, Button } from 'react-bootstrap';
 
 
 class New extends Component {
@@ -7,7 +7,7 @@ class New extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: '',
+      name: '',
       description: '',
       price: '',
       images: ''
@@ -34,8 +34,8 @@ class New extends Component {
             <ControlLabel>Nome do Produto:</ControlLabel>
             <FormControl
               type="text"
-              value={this.state.title}
-              onChange={this.handleChangeTitle.bind(this)}
+              value={this.state.name}
+              onChange={this.handleChangeName.bind(this)}
             />
             <FormControl.Feedback />
           </FormGroup>
@@ -49,6 +49,7 @@ class New extends Component {
             />
             <FormControl.Feedback />
           </FormGroup>
+          <Button bsStyle="success" onClick={this.createNewProduct}> Adicionar produto</Button>
         </Col>
         <Col md={6}>
           <FormGroup validationState={this.getValidationState(this.state.description)}>

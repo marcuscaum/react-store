@@ -40,7 +40,7 @@ class ProductsList extends Component {
         return (
           <Col id={`product_${key+1}`} md={3} key={key}>
             <div className="products-item">
-              <h2 className="products-item--title">{item.name}</h2>
+              <h2 className="products-item--name">{item.name}</h2>
               <p className="products-item--description">{item.description}</p>
             </div>
           </Col>
