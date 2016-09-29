@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Col, FormGroup, FormControl, ControlLabel, InputGroup, Button } from 'react-bootstrap';
-
+import Firebase from 'firebase';
+import Dropzone from 'react-dropzone';
 
 class New extends Component {
 
@@ -21,21 +22,27 @@ class New extends Component {
     else if (length > 0) return 'error';
   }
 
-  handleChangeTitle(e) { this.setState({ title: e.target.value }) }
-  handleChangeDescription(e) { this.setState({ description: e.target.value }) }
-  handleChangePrice(e) { this.setState({ price: e.target.value }) }
+  onDropImage(files) {
+    let images = this.state.images || [];
+
+    images.push(files);
+
+    this.setState({
+      images: images
+    });
+  }
 
   render() {
     return (
       <form>
         <legend> Adicionar um novo produto</legend>
         <Col md={6}>
-          <FormGroup validationState={this.getValidationState(this.state.title)}>
+          <FormGroup validationState={this.getValidationState(this.state.name)}>
             <ControlLabel>Nome do Produto:</ControlLabel>
             <FormControl
               type="text"
               value={this.state.name}
-              onChange={this.handleChangeName.bind(this)}
+              onChange={(e) => this.setState({ name: e.target.value })}
             />
             <FormControl.Feedback />
           </FormGroup>
@@ -44,7 +51,7 @@ class New extends Component {
             <FormControl
                 componentClass="textarea"
                 value={this.state.description}
-                onChange={this.handleChangeDescription.bind(this)}
+                onChange={(e) => this.setState({ description: e.target.value })}
                 rows="5"
             />
             <FormControl.Feedback />
@@ -52,16 +59,22 @@ class New extends Component {
           <Button bsStyle="success" onClick={this.createNewProduct}> Adicionar produto</Button>
         </Col>
         <Col md={6}>
-          <FormGroup validationState={this.getValidationState(this.state.description)}>
+          <FormGroup>
             <ControlLabel>Valor:</ControlLabel>
             <InputGroup>
               <InputGroup.Addon>R$</InputGroup.Addon>
               <FormControl type="text"
                 value={this.state.price}
-                onChange={this.handleChangePrice.bind(this)}
+                onChange={(e) => this.setState({ price: e.target.value })}
               />
               <InputGroup.Addon>.00</InputGroup.Addon>
             </InputGroup>
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel>Imagem do produto:</ControlLabel>
+            <Dropzone onDrop={this.onDropImage.bind(this)}>
+              <div>Try dropping some files here, or click to select files to upload.</div>
+            </Dropzone>
           </FormGroup>
         </Col>
       </form>

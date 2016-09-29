@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Row } from 'react-bootstrap';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Firebase from 'firebase';
 import _ from 'lodash';
 
 import './ProductsList.css';
@@ -12,29 +12,20 @@ class ProductsList extends Component {
     this.state = { products: [] }
   }
 
-  componentDidMount() {
-    this.loadProducts();
-  }
+  componentWillMount() {
+    let items = [];
 
-  loadProducts() {
-    let loadedItems;
-
-    fetch(this.props.source)
-      .then(response => response.json())
-      .then(json => {
-        this.setState({
-          products: json
-        })
-
-
-        this.setState({
-          items: loadedItems
-        })
-      })
+    this.firebaseRef = Firebase.database().ref('products');
+    this.firebaseRef.on("child_added", (dataSnapshot) => {
+      console.log(dataSnapshot.val());
+      items.push(dataSnapshot.val());
+      this.setState({
+        products: items
+      });
+    });
   }
 
   render() {
-
     let loadedItems = this.state.products.map(
       (item, key) => {
         return (
