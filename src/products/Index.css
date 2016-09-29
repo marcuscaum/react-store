@@ -3,3 +3,41 @@
   height: 100%;
   padding: 25px;
 }
+
+.image-dropzone {
+  width: 100%;
+  background: #f1f1f1;
+  padding: 40px;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+.image-dropzone:hover {
+  outline: 2px dashed white;
+}
+
+.colorpicker-tiles {
+  height: 40px;
+  border-radius: 5px;
+  border:1px solid #cacaca;
+  padding: 5px;
+}
+
+.colorpicker-tiles:hover {
+  cursor: pointer;
+}
+
+.colorpicker-tiles div {
+  width: 30px;
+  height: 30px;
+  float: left;
+  margin-right: 5px;
+  border: 1px solid #f1f1f1;
+  border-radius: 5px;
+}
+
+.chrome-picker {
+  position: absolute !important;
+  z-index: 9999999;
+  margin-top: 5px;
+}
