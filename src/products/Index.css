@@ -36,8 +36,20 @@
   border-radius: 5px;
 }
 
-.chrome-picker {
+.twitter-picker {
   position: absolute !important;
   z-index: 9999999;
   margin-top: 5px;
+}
+
+.uploaded-images {
+  border: 1px solid #cacaca;
+  height: 100px;
+  margin-top: 40px;
+  padding: 5px;
+}
+
+.uploaded-images img {
+  height: 100%;
+  width: 100px;
 }

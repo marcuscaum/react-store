@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col, FormGroup, FormControl, ControlLabel, InputGroup, Button, ButtonGroup, ButtonToolbar } from 'react-bootstrap';
 import Firebase from 'firebase';
 import Dropzone from 'react-dropzone';
-import { ChromePicker } from 'react-color';
+import { TwitterPicker } from 'react-color';
 
 class New extends Component {
 
@@ -39,16 +39,13 @@ class New extends Component {
   }
 
   onSelectColor = (color) => {
-    let colors = this.state.options.colors || [];
+    let colors = this.state.options.colors;
     if (colors.length === 5) {
       return this.setState({displayColorPicker: false})
     };
 
     colors.push(color.hex);
-    this.setState({
-      ...this.state.options,
-      colors: colors
-    })
+    this.forceUpdate();
   }
 
   sizeButtons() {
@@ -64,22 +61,18 @@ class New extends Component {
   }
 
   handleSizes(size) {
-    let sizes = this.state.options.sizes || [];
+    let sizes = this.state.options.sizes;
     let sizeIndex = sizes.indexOf(size);
 
-    if (sizeIndex > -1) {
-      sizes.splice(sizeIndex, 1)
-      this.setState({
-        ...this.state.options,
-        sizes: sizes
-      })
-    } else {
-      sizes.push(size);
-      this.setState({
-        ...this.state.options,
-        sizes: sizes
-      })
-    }
+    (sizeIndex > -1) ? sizes.splice(sizeIndex, 1) : sizes.push(size);
+    this.forceUpdate();
+  }
+
+  addProduct() {
+    const products = Firebase.database().ref('products/');
+    products.push(this.state, () => {
+      console.log('terminou!')
+    });
   }
 
   render() {
@@ -90,7 +83,7 @@ class New extends Component {
         <Row>
           <Col md={6}>
             <FormGroup validationState={this.getValidationState(this.state.name)}>
-              <ControlLabel>Nome do Produto:</ControlLabel>
+              <ControlLabel>Nome do Produto:</ControlLabel>''
               <FormControl
                 type="text"
                 value={this.state.name}
@@ -107,6 +100,12 @@ class New extends Component {
                   rows="5"
               />
               <FormControl.Feedback />
+            </FormGroup>
+            <FormGroup>
+            <ControlLabel>Adicionar imagens:</ControlLabel>
+              <Dropzone className="image-dropzone" onDrop={this.onDropImage}>
+                <div>Try dropping some files here, or click to select files to upload.</div>
+              </Dropzone>
             </FormGroup>
           </Col>
           <Col md={6} onMouseLeave={() => this.setState({displayColorPicker: false})}>
@@ -126,7 +125,7 @@ class New extends Component {
               <div className="colorpicker-tiles" onClick={() => this.setState({displayColorPicker: true})}>
                 {this.state.options.colors.map((color, key) => <div key={key} style={{backgroundColor: color}}></div> )}
               </div>
-              { this.state.displayColorPicker ? <ChromePicker  onMouseLeave={() => this.setState({displayColorPicker: false})} color={this.state.options.colors} onChangeComplete={this.onSelectColor}/> : null }
+              { this.state.displayColorPicker ? <TwitterPicker  onMouseLeave={() => this.setState({displayColorPicker: false})} color={this.state.options.colors} onChangeComplete={this.onSelectColor}/> : null }
             </FormGroup>
             <FormGroup>
               <ControlLabel>Tamanhos:</ControlLabel>
@@ -137,19 +136,14 @@ class New extends Component {
               </ButtonToolbar>
             </FormGroup>
             <FormGroup>
-              <ControlLabel>Adicionar imagens:</ControlLabel>
-              <Dropzone className="image-dropzone" onDrop={this.onDropImage}>
-                <div>Try dropping some files here, or click to select files to upload.</div>
-              </Dropzone>
               {this.state.images.length > 0 ? <div>
-              <h2>Uploading {this.state.images.length} files...</h2>
-              <div>{this.state.images.map((image, key) => <img key={key} src={image[0].preview} role="presentation"/> )}</div>
+              <div className="uploaded-images">{this.state.images.map((image, key) => <img key={key} src={image[0].preview} role="presentation"/> )}</div>
               </div> : null}
             </FormGroup>
           </Col>
         </Row>
         <ButtonGroup>
-          <Button bsStyle="success" onClick={this.createNewProduct}> Adicionar produto</Button>
+          <Button bsStyle="success" onClick={this.addProduct.bind(this)}> Adicionar produto</Button>
         </ButtonGroup>
       </form>
     );
