@@ -5,7 +5,7 @@
         "name": "Óculos Rayban",
         "description": "Óculos estilo motoqueiro porra!",
         "options":{
-          "color": ["green", "red", "blue"],
+          "color": ["green", "black", "blue"],
           "size": []
         },
         "images":["../images/products/1/rayban.jpg", "../images/products/1/rayban2.jpg", "../images/products/1/rayban3.jpg"],
